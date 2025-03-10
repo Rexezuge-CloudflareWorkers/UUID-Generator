@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>UUID Generator</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			text-align: center;
+			padding: 20px;
+		}
+
+		.uuid-box {
+			font-size: 1.2em;
+			margin: 10px;
+			padding: 10px;
+			border: 1px solid #ccc;
+			display: inline-block;
+			width: 80%;
+			max-width: 400px;
+		}
+
+		.copy-btn {
+			margin-top: 10px;
+			padding: 10px;
+			background: #007bff;
+			color: white;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+
+		.copy-btn:hover {
+			background: #0056b3;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>UUID Generator</h1>
+	<p>Random UUID:</p>
+	<div id="uuid1" class="uuid-box">{{UUID1}}</div>
+	<button class="copy-btn" onclick="copyToClipboard('uuid1')">Copy</button>
+
+	<p>UUID starting with a letter:</p>
+	<div id="uuid2" class="uuid-box">{{UUID2}}</div>
+	<button class="copy-btn" onclick="copyToClipboard('uuid2')">Copy</button>
+
+	<p>Need multiple UUIDs? Try <a href="/api?number=5">/api?number=5</a></p>
+
+	<script>
+		function copyToClipboard(elementId) {
+			const text = document.getElementById(elementId).textContent;
+			navigator.clipboard.writeText(text).then(() => {
+				alert("Copied to clipboard: " + text);
+			}).catch(err => {
+				console.error("Error copying text: ", err);
+			});
+		}
+	</script>
+</body>
+
+</html>
