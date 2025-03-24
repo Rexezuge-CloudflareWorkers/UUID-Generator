@@ -1,21 +1,21 @@
 {
-	"name": "uuid-generator",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"predeploy": "node src/generateStaticString.js",
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev",
-		"test": "vitest",
-		"cf-typegen": "wrangler types"
-	},
-	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.7.5",
-		"@cloudflare/workers-types": "^4.20250310.0",
-		"typescript": "^5.5.2",
-		"vitest": "~3.0.7",
-		"wrangler": "^4.0.0"
-	},
-	"dependencies": {}
+    "name": "uuid-generator",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "predeploy": "node src/generateStaticString.js",
+        "deploy": "wrangler deploy",
+        "dev": "wrangler dev",
+        "start": "wrangler dev",
+        "test": "vitest",
+        "cf-typegen": "wrangler types"
+    },
+    "devDependencies": {
+        "@cloudflare/vitest-pool-workers": "^0.8.4",
+        "@cloudflare/workers-types": "^4.20250321.0",
+        "typescript": "^5.8.2",
+        "vitest": "~3.0.9",
+        "wrangler": "^4.4.0"
+    },
+    "dependencies": {}
 }

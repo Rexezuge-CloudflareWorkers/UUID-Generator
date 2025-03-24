@@ -2,64 +2,108 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>UUID Generator</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			text-align: center;
-			padding: 20px;
-		}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
 
-		.uuid-box {
-			font-size: 1.2em;
-			margin: 10px;
-			padding: 10px;
-			border: 1px solid #ccc;
-			display: inline-block;
-			width: 80%;
-			max-width: 400px;
-		}
+        .container {
+            width: 500px;
+            padding: 25px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
 
-		.copy-btn {
-			margin-top: 10px;
-			padding: 10px;
-			background: #007bff;
-			color: white;
-			border: none;
-			cursor: pointer;
-			border-radius: 5px;
-		}
+        .uuid-box-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #fff;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 10px 0;
+        }
 
-		.copy-btn:hover {
-			background: #0056b3;
-		}
-	</style>
+        .uuid-box {
+            font-size: 1.2em;
+            word-break: break-all;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .copy-btn {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 22px;
+            margin-left: 10px;
+        }
+
+        .docs-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .docs-link a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .docs-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const copyBtn = document.getElementById(elementId + '-btn');
+                copyBtn.innerHTML = '✔';
+                setTimeout(() => copyBtn.innerHTML = '📋', 2000);
+            }).catch(err => {
+                console.error("Error copying text: ", err);
+            });
+        }
+    </script>
 </head>
 
 <body>
-	<h1>UUID Generator</h1>
-	<p>Random UUID:</p>
-	<div id="uuid1" class="uuid-box">{{UUID1}}</div>
-	<button class="copy-btn" onclick="copyToClipboard('uuid1')">Copy</button>
+    <div class="container">
+        <h2>UUID Generator</h2>
 
-	<p>UUID starting with a letter:</p>
-	<div id="uuid2" class="uuid-box">{{UUID2}}</div>
-	<button class="copy-btn" onclick="copyToClipboard('uuid2')">Copy</button>
+        <div class="uuid-section">
+            <p>Random UUID:</p>
+            <div class="uuid-box-container">
+                <div id="uuid1" class="uuid-box">{{UUID1}}</div>
+                <button id="uuid1-btn" class="copy-btn" onclick="copyToClipboard('uuid1')">📋</button>
+            </div>
+        </div>
 
-	<p>Need multiple UUIDs? Try <a href="/api?number=5">/api?number=5</a></p>
+        <div class="uuid-section">
+            <p>UUID starting with a letter:</p>
+            <div class="uuid-box-container">
+                <div id="uuid2" class="uuid-box">{{UUID2}}</div>
+                <button id="uuid2-btn" class="copy-btn" onclick="copyToClipboard('uuid2')">📋</button>
+            </div>
+        </div>
+    </div>
 
-	<script>
-		function copyToClipboard(elementId) {
-			const text = document.getElementById(elementId).textContent;
-			navigator.clipboard.writeText(text).then(() => {
-				alert("Copied to clipboard: " + text);
-			}).catch(err => {
-				console.error("Error copying text: ", err);
-			});
-		}
-	</script>
+    <div class="docs-link">
+        <p>Need multiple UUIDs? Try <a href="/api?number=5" target="_blank">/api?number=5</a></p>
+    </div>
 </body>
 
 </html>
