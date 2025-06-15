@@ -66,6 +66,7 @@
 			text-decoration: underline;
 		}
 	</style>
+
 	<script>
 		function copyToClipboard(elementId) {
 			const text = document.getElementById(elementId).textContent;
@@ -79,28 +80,35 @@
 		}
 
 		async function fetchUUIDs() {
+			const requests = [
+				fetch('/api/uuid'),
+				fetch('/api/uuid?startWithLetter=true'),
+				fetch('/api/uuid?startWithNumber=true')
+			];
+
 			try {
-				// First fetch - Random UUID
-				const response1 = await fetch('/api/uuid');
-				const data1 = await response1.json();
-				document.getElementById('uuid1').textContent = (data1.uuids && data1.uuids[0]) || 'Error fetching UUID';
+				const responses = await Promise.all(requests);
+				const dataPromises = responses.map(response => response.json());
+				const data = await Promise.all(dataPromises);
 
-				// Second fetch - UUID starting with a letter
-				const response2 = await fetch('/api/uuid?startWithLetter=true');
-				const data2 = await response2.json();
-				document.getElementById('uuid2').textContent = (data2.uuids && data2.uuids[0]) || 'Error fetching UUID';
+				const uuid1 = (data[0].uuids && data[0].uuids[0]) || 'Error fetching UUID';
+				const uuid2 = (data[1].uuids && data[1].uuids[0]) || 'Error fetching UUID';
+				const uuid3 = (data[2].uuids && data[2].uuids[0]) || 'Error fetching UUID';
 
-				// Third fetch - UUID starting with a number
-				const response3 = await fetch('/api/uuid?startWithNumber=true');
-				const data3 = await response3.json();
-				document.getElementById('uuid3').textContent = (data3.uuids && data3.uuids[0]) || 'Error fetching UUID';
+				document.getElementById('uuid1').textContent = uuid1;
+				document.getElementById('uuid2').textContent = uuid2;
+				document.getElementById('uuid3').textContent = uuid3;
 			} catch (error) {
 				console.error('Error fetching UUIDs:', error);
+				document.getElementById('uuid1').textContent = 'Error fetching UUID';
+				document.getElementById('uuid2').textContent = 'Error fetching UUID';
+				document.getElementById('uuid3').textContent = 'Error fetching UUID';
 			}
 		}
 
 		window.onload = fetchUUIDs;
 	</script>
+
 </head>
 
 <body>
