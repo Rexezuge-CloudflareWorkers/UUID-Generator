@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>UUID Generator</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 20px;
+		}
+
+		.container {
+			width: 500px;
+			padding: 25px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			text-align: center;
+			background-color: #f9f9f9;
+		}
+
+		.uuid-box-container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border: 1px solid #ccc;
+			border-radius: 6px;
+			background-color: #fff;
+			padding: 10px;
+			width: 100%;
+			box-sizing: border-box;
+			margin: 10px 0;
+		}
+
+		.uuid-box {
+			font-size: 1.2em;
+			word-break: break-all;
+			flex-grow: 1;
+			text-align: left;
+		}
+
+		.copy-btn {
+			cursor: pointer;
+			background: none;
+			border: none;
+			font-size: 22px;
+			margin-left: 10px;
+		}
+
+		.docs-link {
+			margin-top: 20px;
+			text-align: center;
+		}
+
+		.docs-link a {
+			color: #007BFF;
+			text-decoration: none;
+			font-size: 16px;
+		}
+
+		.docs-link a:hover {
+			text-decoration: underline;
+		}
+	</style>
+	<script>
+		function copyToClipboard(elementId) {
+			const text = document.getElementById(elementId).textContent;
+			navigator.clipboard.writeText(text).then(() => {
+				const copyBtn = document.getElementById(elementId + '-btn');
+				copyBtn.innerHTML = '✔';
+				setTimeout(() => copyBtn.innerHTML = '📋', 2000);
+			}).catch(err => {
+				console.error("Error copying text: ", err);
+			});
+		}
+
+		async function fetchUUIDs() {
+			try {
+				// First fetch - Random UUID
+				const response1 = await fetch('/api/uuid');
+				const data1 = await response1.json();
+				document.getElementById('uuid1').textContent = (data1.uuids && data1.uuids[0]) || 'Error fetching UUID';
+
+				// Second fetch - UUID starting with a letter
+				const response2 = await fetch('/api/uuid?startWithLetter=true');
+				const data2 = await response2.json();
+				document.getElementById('uuid2').textContent = (data2.uuids && data2.uuids[0]) || 'Error fetching UUID';
+
+				// Third fetch - UUID starting with a number
+				const response3 = await fetch('/api/uuid?startWithNumber=true');
+				const data3 = await response3.json();
+				document.getElementById('uuid3').textContent = (data3.uuids && data3.uuids[0]) || 'Error fetching UUID';
+			} catch (error) {
+				console.error('Error fetching UUIDs:', error);
+			}
+		}
+
+		window.onload = fetchUUIDs;
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<h2>UUID Generator</h2>
+
+		<div class="uuid-section">
+			<p>Random UUID:</p>
+			<div class="uuid-box-container">
+				<div id="uuid1" class="uuid-box">Loading...</div>
+				<button id="uuid1-btn" class="copy-btn" onclick="copyToClipboard('uuid1')">📋</button>
+			</div>
+		</div>
+
+		<div class="uuid-section">
+			<p>UUID starting with a letter:</p>
+			<div class="uuid-box-container">
+				<div id="uuid2" class="uuid-box">Loading...</div>
+				<button id="uuid2-btn" class="copy-btn" onclick="copyToClipboard('uuid2')">📋</button>
+			</div>
+		</div>
+
+		<div class="uuid-section">
+			<p>UUID starting with a number:</p>
+			<div class="uuid-box-container">
+				<div id="uuid3" class="uuid-box">Loading...</div>
+				<button id="uuid3-btn" class="copy-btn" onclick="copyToClipboard('uuid3')">📋</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="docs-link">
+		<p>Need API documentation? Visit <a href="/docs" target="_blank">/docs</a></p>
+	</div>
+</body>
+
+</html>
