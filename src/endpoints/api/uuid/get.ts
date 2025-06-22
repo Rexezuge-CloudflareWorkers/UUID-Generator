@@ -84,21 +84,7 @@ export class GenerateUUIDRoute extends OpenAPIRoute {
 
 			// UUID generation with constraints
 			while (uuids.length < countNum) {
-				let uuid = crypto.randomUUID().replace(/-/g, ""); // Remove dashes
-
-				if (startsWithLetter) {
-					// Replace first char if not a letter
-					if (!/^[A-Za-z]/.test(uuid)) {
-						uuid = 'a' + uuid.slice(1);
-					}
-				} else if (startsWithNumber) {
-					// Replace first char if not a digit
-					if (!/^[0-9]/.test(uuid)) {
-						uuid = '0' + uuid.slice(1);
-					}
-				}
-
-				uuids.push(uuid);
+				uuids.push(getRandomUUID(startsWithLetter, startsWithNumber, false));
 			}
 
 			return c.json({ uuids });
@@ -107,4 +93,22 @@ export class GenerateUUIDRoute extends OpenAPIRoute {
 			return c.json({ error: "Internal Server Error" }, 500);
 		}
 	}
+}
+
+function getRandomUUID(
+	startsWithLetter: boolean,
+	startsWithNumber: boolean,
+	removeDashes: boolean
+): string {
+	let uuid: string = crypto.randomUUID();
+
+	while (startsWithLetter && !/^[A-Za-z]/.test(uuid)) {
+		uuid = crypto.randomUUID();
+	}
+
+	while (startsWithNumber && !/^[0-9]/.test(uuid)) {
+		uuid = crypto.randomUUID();
+	}
+
+	return removeDashes ? uuid.replace(/-/g, "") : uuid;
 }
