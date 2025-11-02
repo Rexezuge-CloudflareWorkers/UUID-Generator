@@ -3,23 +3,21 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"predeploy": "echo 'node src/generateStaticString.js'",
+		"predeploy": "cd app && npm install && npm run release",
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
-		"test": "vitest",
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
-		"@cloudflare/vitest-pool-workers": "^0.8.38",
-		"@cloudflare/workers-types": "^4.20250614.0",
-		"typescript": "^5.8.3",
-		"vitest": "~3.2.3",
-		"wrangler": "^4.20.0"
+		"@cloudflare/vitest-pool-workers": "^0.10.3",
+		"@cloudflare/workers-types": "^4.20251014.0",
+		"typescript": "^5.9.3",
+		"wrangler": "^4.45.3"
 	},
 	"dependencies": {
-		"chanfana": "^2.8.0",
-		"hono": "^4.7.11",
-		"zod": "^3.25.64"
+		"chanfana": "^2.8.3",
+		"hono": "^4.10.4",
+		"zod": "^4.1.12"
 	}
 }

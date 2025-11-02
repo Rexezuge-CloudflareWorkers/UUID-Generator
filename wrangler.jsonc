@@ -6,7 +6,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "uuid-generator",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-03-12",
+	"compatibility_date": "2025-11-02",
 	"compatibility_flags": [
 		"global_fetch_strictly_public"
 	],
@@ -17,15 +17,11 @@
 		"head_sampling_rate": 1
 	},
 	"routes": [
-		{
-			"pattern": "uuid-generator.beyekiri.cfd",
-			"custom_domain": true
-		}
 	],
 	"placement": {
 		"mode": "off"
 	},
 	"assets": {
-		"directory": "./public"
+		"directory": "./app/dist"
 	}
 }
