@@ -37,7 +37,7 @@ jobs:
           FRONTEND_ENV: ${{ vars.FRONTEND_ENV }}
 
       - name: Build Assets
-        run: npm run predeploy
+        run: npm run buildApp
 
       - name: Deploy with Wrangler
         run: npx wrangler pages deploy ./app/dist/ --project-name $CLOUDFLARE_PROJECT_NAME
