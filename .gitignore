@@ -1,3 +1,5 @@
+.vscode/
+
 # Generated src directory
 src/generated-src
 src/generated-src/*
