@@ -34,9 +34,15 @@ export class GenerateUUIDRoute extends OpenAPIRoute {
 				description: "Successfully generated UUID(s)",
 				content: {
 					"application/json": {
-						schema: z.object({
-							uuids: z.array(z.string())
-						}),
+						schema: {
+							type: "object",
+							properties: {
+								uuids: {
+									type: "array",
+									items: { type: "string" }
+								}
+							}
+						},
 					},
 				},
 			},

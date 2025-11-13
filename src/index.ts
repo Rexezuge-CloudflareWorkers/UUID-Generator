@@ -22,4 +22,4 @@ openapi.get('/api/uuid', GenerateUUIDRoute);
 app.use('/*', serveStatic({ root: './app/dist/' }));
 
 // Export the Hono app
-export default app;
+export default openapi;
