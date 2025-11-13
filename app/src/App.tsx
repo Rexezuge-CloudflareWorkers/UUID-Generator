@@ -10,10 +10,12 @@ function App() {
 
 	const fetchUUIDs = async () => {
 		try {
+			const backendUrl = import.meta.env.VITE_OPTIONAL_BACKEND_URL || '';
+			const baseUrl = backendUrl ? backendUrl : '';
 			const requests = [
-				fetch('/api/uuid'),
-				fetch('/api/uuid?startWithLetter=true'),
-				fetch('/api/uuid?startWithNumber=true'),
+				fetch(`${baseUrl}/api/uuid`),
+				fetch(`${baseUrl}/api/uuid?startWithLetter=true`),
+				fetch(`${baseUrl}/api/uuid?startWithNumber=true`),
 			];
 
 			const responses = await Promise.all(requests);
