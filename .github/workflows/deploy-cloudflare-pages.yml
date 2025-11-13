@@ -27,9 +27,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Assets
-        run: npm run predeploy
-
       - name: Dump FRONTEND_ENV to Repository
         run: |
           cd app/
@@ -38,6 +35,9 @@ jobs:
           fi
         env:
           FRONTEND_ENV: ${{ vars.FRONTEND_ENV }}
+
+      - name: Build Assets
+        run: npm run predeploy
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
