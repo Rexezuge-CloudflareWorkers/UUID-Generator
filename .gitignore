@@ -1,4 +1,5 @@
 .vscode/
+worker-configuration.d.ts
 
 # Generated src directory
 src/generated-src

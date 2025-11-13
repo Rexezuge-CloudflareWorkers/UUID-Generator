@@ -3,10 +3,11 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"predeploy": "cd app && npm install && npm run release",
+		"predeploy": "npm run buildApp && npm run cf-typegen",
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
+		"buildApp": "cd app && npm install && npm run release",
 		"cf-typegen": "wrangler types"
 	},
 	"devDependencies": {
