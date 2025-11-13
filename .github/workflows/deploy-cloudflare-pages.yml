@@ -30,6 +30,15 @@ jobs:
       - name: Build Assets
         run: npm run predeploy
 
+      - name: Dump FRONTEND_ENV to Repository
+        run: |
+          cd app/
+          if [ ! -f ".env" ]; then
+            echo "${FRONTEND_ENV}" > .env
+          fi
+        env:
+          FRONTEND_ENV: ${{ vars.FRONTEND_ENV }}
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
