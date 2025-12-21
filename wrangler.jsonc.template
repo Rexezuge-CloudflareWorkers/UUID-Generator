@@ -1,22 +1,14 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "uuid-generator",
-	"main": "src/index.ts",
-	"compatibility_date": "2025-11-02",
-	"compatibility_flags": [
-	],
-	"preview_urls": false,
-	"workers_dev": true,
-	"observability": {
-		"enabled": false,
-		"head_sampling_rate": 1
-	},
-	"routes": [
-	],
-	"placement": {
-		"mode": "off"
-	},
-	"assets": {
-		"directory": "./app/dist"
-	}
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "uuid-generator",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-12-20",
+  "preview_urls": false,
+  "workers_dev": true,
+  "observability": {
+    "enabled": false,
+  },
+  "assets": {
+    "directory": "./app/dist",
+  },
 }
