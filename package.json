@@ -13,7 +13,7 @@
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20260305.x",
 		"typescript": "^5.9.x",
-		"wrangler": "^4.72.x"
+		"wrangler": "^4.76.x"
 	},
 	"dependencies": {
 		"chanfana": "^3.2.x",
