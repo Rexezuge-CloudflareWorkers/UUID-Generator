@@ -1,4 +1,6 @@
 name: Deploy Cloudflare Worker
+permissions:
+  contents: read
 
 on:
   workflow_dispatch:
