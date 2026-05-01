@@ -12,7 +12,7 @@
 	},
 	"devDependencies": {
 		"typescript": "^6.0.x",
-		"wrangler": "^4.81.x"
+		"wrangler": "^4.86.x"
 	},
 	"dependencies": {
 		"chanfana": "^3.3.x",
