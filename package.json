@@ -24,7 +24,7 @@
     "tsx": "^4.22.x",
     "typescript": "^6.0.x",
     "vitest": "^4.1.x",
-    "wrangler": "^4.99.x"
+    "wrangler": "^4.101.x"
   },
   "dependencies": {
     "chanfana": "^3.3.x",
