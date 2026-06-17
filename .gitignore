@@ -178,3 +178,6 @@ dist
 
 .dev.vars
 .wrangler/
+
+# pnpm
+.pnpm-debug.log*
