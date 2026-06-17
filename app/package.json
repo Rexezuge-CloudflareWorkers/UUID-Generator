@@ -14,11 +14,11 @@
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "^1.30.x",
-		"@tailwindcss/vite": "^4.1.x",
+		"@tailwindcss/vite": "^4.3.x",
 		"@types/node": "^24.0.x",
 		"@types/react": "^19.1.x",
 		"@types/react-dom": "^19.1.x",
-		"@vitejs/plugin-react": "^4.6.x",
+		"@vitejs/plugin-react": "^6.0.x",
 		"eslint": "^9.30.x",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.4",
@@ -28,7 +28,7 @@
 		"prettier": "^3.6.2",
 		"typescript": "^5.8.x",
 		"typescript-eslint": "^8.36.x",
-		"vite": "^7.3.x"
+		"vite": "^8.0.x"
 	},
 	"dependencies": {
 		"react": "^19.1.x",
