@@ -14,38 +14,37 @@ function App() {
   const [copyIcon2Nd, setCopyIcon2Nd] = useState('📋');
   const [copyIcon3Nd, setCopyIcon3Nd] = useState('📋');
 
-  const fetchUUIDs = async () => {
-    try {
-      const backendUrl = import.meta.env.VITE_OPTIONAL_BACKEND_URL || '';
-      const baseUrl = backendUrl ? backendUrl : '';
-      const requests = [
-        fetch(`${baseUrl}/api/uuid`),
-        fetch(`${baseUrl}/api/uuid?startWithLetter=true`),
-        fetch(`${baseUrl}/api/uuid?startWithNumber=true`),
-      ];
-
-      const responses = await Promise.all(requests);
-      const dataPromises = responses.map((response) => response.json());
-      const data = await Promise.all(dataPromises);
-
-      setUuid1((data[0].uuids && data[0].uuids[0]) || 'Error fetching UUID');
-      setUuid2((data[1].uuids && data[1].uuids[0]) || 'Error fetching UUID');
-      setUuid3((data[2].uuids && data[2].uuids[0]) || 'Error fetching UUID');
-      setUuid1NoDash(((data[0].uuids && data[0].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
-      setUuid2NoDash(((data[1].uuids && data[1].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
-      setUuid3NoDash(((data[2].uuids && data[2].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
-    } catch (error) {
-      console.error('Error fetching UUIDs:', error);
-      setUuid1('Error fetching UUID');
-      setUuid2('Error fetching UUID');
-      setUuid3('Error fetching UUID');
-      setUuid1NoDash('Error fetching UUID');
-      setUuid2NoDash('Error fetching UUID');
-      setUuid3NoDash('Error fetching UUID');
-    }
-  };
-
   useEffect(() => {
+    const fetchUUIDs = async () => {
+      try {
+        const backendUrl = import.meta.env.VITE_OPTIONAL_BACKEND_URL || '';
+        const baseUrl = backendUrl ? backendUrl : '';
+        const requests = [
+          fetch(`${baseUrl}/api/uuid`),
+          fetch(`${baseUrl}/api/uuid?startWithLetter=true`),
+          fetch(`${baseUrl}/api/uuid?startWithNumber=true`),
+        ];
+
+        const responses = await Promise.all(requests);
+        const dataPromises = responses.map((response) => response.json());
+        const data = await Promise.all(dataPromises);
+
+        setUuid1((data[0].uuids && data[0].uuids[0]) || 'Error fetching UUID');
+        setUuid2((data[1].uuids && data[1].uuids[0]) || 'Error fetching UUID');
+        setUuid3((data[2].uuids && data[2].uuids[0]) || 'Error fetching UUID');
+        setUuid1NoDash(((data[0].uuids && data[0].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
+        setUuid2NoDash(((data[1].uuids && data[1].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
+        setUuid3NoDash(((data[2].uuids && data[2].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
+      } catch (error) {
+        console.error('Error fetching UUIDs:', error);
+        setUuid1('Error fetching UUID');
+        setUuid2('Error fetching UUID');
+        setUuid3('Error fetching UUID');
+        setUuid1NoDash('Error fetching UUID');
+        setUuid2NoDash('Error fetching UUID');
+        setUuid3NoDash('Error fetching UUID');
+      }
+    };
     fetchUUIDs();
   }, []);
 
