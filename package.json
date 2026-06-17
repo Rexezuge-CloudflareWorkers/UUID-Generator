@@ -4,12 +4,13 @@
   "private": true,
   "packageManager": "pnpm@11.2.2",
   "scripts": {
+    "postinstall": "pnpm run prepare-wrangler-config && pnpm run cf-typegen",
     "predeploy": "pnpm run buildApp && pnpm run cf-typegen",
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "buildApp": "cd app && pnpm install && pnpm run release",
-    "cf-typegen": "wrangler types",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv",
     "checks": "pnpm -r typecheck && pnpm --filter uuid-generator-app lint && pnpm run test",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -19,7 +20,6 @@
     "format": "prettier --check ."
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260616.1",
     "prettier": "^3.8.x",
     "tsx": "^4.22.x",
     "typescript": "^6.0.x",
