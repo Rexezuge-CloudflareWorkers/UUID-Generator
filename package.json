@@ -19,7 +19,7 @@
     "format": "prettier --check ."
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260616.1",
+    "@cloudflare/workers-types": "^4.20260617.1",
     "prettier": "^3.8.x",
     "tsx": "^4.22.x",
     "typescript": "^6.0.x",
