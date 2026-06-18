@@ -14,7 +14,7 @@
     "typecheck": "tsc -b"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.30.x",
+    "@cloudflare/vite-plugin": "^1.41.x",
     "@eslint/js": "^10.0.x",
     "@tailwindcss/vite": "^4.1.x",
     "@types/node": "^25.9.x",
