@@ -21,7 +21,7 @@
     "@types/react": "^19.1.x",
     "@types/react-dom": "^19.1.x",
     "@vitejs/plugin-react": "^6.0.x",
-    "eslint": "^9.30.x",
+    "eslint": "^10.5.x",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react-hooks": "^7.1.x",
