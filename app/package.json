@@ -20,7 +20,7 @@
     "@types/node": "^25.9.x",
     "@types/react": "^19.1.x",
     "@types/react-dom": "^19.1.x",
-    "@vitejs/plugin-react": "^4.6.x",
+    "@vitejs/plugin-react": "^6.0.x",
     "eslint": "^9.30.x",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
