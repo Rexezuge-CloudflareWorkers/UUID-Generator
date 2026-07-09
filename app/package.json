@@ -17,7 +17,7 @@
     "@cloudflare/vite-plugin": "^1.43.x",
     "@eslint/js": "^10.0.x",
     "@tailwindcss/vite": "^4.3.x",
-    "@types/node": "^25.9.x",
+    "@types/node": "^26.1.x",
     "@types/react": "^19.1.x",
     "@types/react-dom": "^19.1.x",
     "@vitejs/plugin-react": "^6.0.x",
