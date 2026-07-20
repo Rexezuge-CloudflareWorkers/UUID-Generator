@@ -17,12 +17,10 @@ function App() {
   useEffect(() => {
     const fetchUUIDs = async () => {
       try {
-        const backendUrl = import.meta.env.VITE_OPTIONAL_BACKEND_URL || '';
-        const baseUrl = backendUrl ? backendUrl : '';
         const requests = [
-          fetch(`${baseUrl}/api/uuid`),
-          fetch(`${baseUrl}/api/uuid?startWithLetter=true`),
-          fetch(`${baseUrl}/api/uuid?startWithNumber=true`),
+          fetch('/api/uuid'),
+          fetch('/api/uuid?startWithLetter=true'),
+          fetch('/api/uuid?startWithNumber=true'),
         ];
 
         const responses = await Promise.all(requests);
@@ -129,7 +127,7 @@ function App() {
       <div className="mt-8 text-center">
         <p className="text-gray-600">
           For more details on the API, please visit the{' '}
-          <a href={`${import.meta.env.VITE_OPTIONAL_BACKEND_URL || ''}/docs`} target="_blank" className="text-blue-600 hover:underline">
+          <a href="/docs" target="_blank" className="text-blue-600 hover:underline">
             OpenAPI documentation
           </a>
           .

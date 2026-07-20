@@ -78,12 +78,39 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
+      - name: Prepare Wrangler Pages Configuration
+        run: |
+          if [ -n "${WRANGLER_PAGES_JSONC}" ]; then
+            printf '%s\n' "${WRANGLER_PAGES_JSONC}" > wrangler.pages.jsonc
+          else
+            cp wrangler.pages.jsonc.template wrangler.pages.jsonc
+          fi
+        env:
+          WRANGLER_PAGES_JSONC: ${{ vars.WRANGLER_PAGES_JSONC }}
+
       - name: Build Frontend App
         run: pnpm run buildApp
 
+      - name: Validate Pages Configuration
+        run: |
+          if [ -z "${CLOUDFLARE_PAGES_PROJECT_NAME}" ]; then
+            printf '%s\n' "CLOUDFLARE_PAGES_PROJECT_NAME repository variable is required"
+            exit 1
+          fi
+        env:
+          CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+
       - name: Deploy with Wrangler Pages
-        run: pnpm exec wrangler pages deploy ./app/dist/ --project-name $CLOUDFLARE_PROJECT_NAME
+        run: |
+          pnpm exec wrangler pages deploy \
+            --config wrangler.pages.jsonc \
+            --project-name "${CLOUDFLARE_PAGES_PROJECT_NAME}" \
+            --branch "${DEPLOY_BRANCH}" \
+            --commit-hash "${DEPLOY_SHA}" \
+            --commit-message "$(git log -1 --pretty=%s)"
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_PROJECT_NAME: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+          CLOUDFLARE_PAGES_PROJECT_NAME: ${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          DEPLOY_BRANCH: ${{ github.event.workflow_run.head_branch || github.event.client_payload.branch || github.ref_name }}
+          DEPLOY_SHA: ${{ github.event.workflow_run.head_sha || github.event.client_payload.sha || github.sha }}
