@@ -49,6 +49,9 @@ jobs:
         env:
           WRANGLER_JSONC: ${{ vars.WRANGLER_JSONC }}
 
+      - name: Build Frontend App
+        run: pnpm run buildApp
+
       - name: Deploy with Wrangler
         run: pnpm exec wrangler deploy
         env:

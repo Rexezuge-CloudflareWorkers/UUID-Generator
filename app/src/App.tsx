@@ -17,11 +17,7 @@ function App() {
   useEffect(() => {
     const fetchUUIDs = async () => {
       try {
-        const requests = [
-          fetch('/api/uuid'),
-          fetch('/api/uuid?startWithLetter=true'),
-          fetch('/api/uuid?startWithNumber=true'),
-        ];
+        const requests = [fetch('/api/uuid'), fetch('/api/uuid?startWithLetter=true'), fetch('/api/uuid?startWithNumber=true')];
 
         const responses = await Promise.all(requests);
         const dataPromises = responses.map((response) => response.json());
