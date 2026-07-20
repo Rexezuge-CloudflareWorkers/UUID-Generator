@@ -88,6 +88,9 @@ jobs:
         env:
           WRANGLER_PAGES_JSONC: ${{ vars.WRANGLER_PAGES_JSONC }}
 
+      - name: Stage Pages Config as Default Wrangler Config
+        run: cp wrangler.pages.jsonc wrangler.jsonc
+
       - name: Build Frontend App
         run: pnpm run buildApp
 
@@ -103,7 +106,6 @@ jobs:
       - name: Deploy with Wrangler Pages
         run: |
           pnpm exec wrangler pages deploy \
-            --config wrangler.pages.jsonc \
             --project-name "${CLOUDFLARE_PAGES_PROJECT_NAME}" \
             --branch "${DEPLOY_BRANCH}" \
             --commit-hash "${DEPLOY_SHA}" \
