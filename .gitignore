@@ -1,5 +1,6 @@
 .vscode/
 wrangler.jsonc
+wrangler.pages.jsonc
 worker-configuration.d.ts
 
 # Generated src directory
