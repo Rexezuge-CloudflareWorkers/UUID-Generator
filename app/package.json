@@ -28,7 +28,7 @@
     "eslint-plugin-react-refresh": "^0.5.x",
     "globals": "^17.7.x",
     "prettier": "^3.9.4",
-    "typescript": "^6.0.x",
+    "typescript": "^7.0.x",
     "typescript-eslint": "^8.36.x",
     "vite": "^8.1.x"
   },
