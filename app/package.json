@@ -33,7 +33,7 @@
     "vite": "^8.1.x"
   },
   "dependencies": {
-    "react": "^19.1.x",
+    "react": "^19.2.x",
     "react-dom": "^19.1.x"
   },
   "type": "module"
