@@ -19,7 +19,7 @@
     "@tailwindcss/vite": "^4.3.x",
     "@types/node": "^26.1.x",
     "@types/react": "^19.1.x",
-    "@types/react-dom": "^19.1.x",
+    "@types/react-dom": "^19.2.x",
     "@vitejs/plugin-react": "^6.0.x",
     "eslint": "^10.7.x",
     "eslint-config-prettier": "^10.1.8",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "react": "^19.2.x",
-    "react-dom": "^19.1.x"
+    "react-dom": "^19.2.x"
   },
   "type": "module"
 }
