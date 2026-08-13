@@ -26,7 +26,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react-hooks": "^7.1.x",
     "eslint-plugin-react-refresh": "^0.5.x",
-    "globals": "^17.8.x",
+    "globals": "^17.9.x",
     "prettier": "^3.9.6",
     "typescript": "^6.0.x",
     "typescript-eslint": "^8.65.x",
