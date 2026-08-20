@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "chanfana": "^3.3.x",
-    "hono": "^4.12.x",
+    "hono": "^4.13.x",
     "zod": "^4.4.x"
   }
 }
