@@ -27,7 +27,7 @@
     "wrangler": "^4.123.x"
   },
   "dependencies": {
-    "chanfana": "^3.3.x",
+    "chanfana": "^3.4.x",
     "hono": "^4.13.x",
     "zod": "^4.4.x"
   }
