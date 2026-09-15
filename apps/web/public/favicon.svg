@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Card background -->
+  <rect x="1.5" y="1.5" width="29" height="29" rx="7" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <!-- Random hex cell (filled, top-left) -->
+  <rect x="7" y="7" width="7" height="7" rx="1.5" fill="#2563eb"/>
+  <!-- Random hex cell (outline, top-right) -->
+  <rect x="18" y="7" width="7" height="7" rx="1.5" stroke="#2563eb" stroke-width="2"/>
+  <!-- Random hex cell (outline, bottom-left) -->
+  <rect x="7" y="18" width="7" height="7" rx="1.5" stroke="#2563eb" stroke-width="2"/>
+  <!-- Random hex cell (filled light, bottom-right) -->
+  <rect x="18" y="18" width="7" height="7" rx="1.5" fill="#93c5fd"/>
+</svg>
