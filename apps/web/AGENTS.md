@@ -23,5 +23,5 @@ Prefer the root scripts (`pnpm run buildApp`, `pnpm run checks`) — they target
 ## Conventions
 
 - Keep the UI dependency-light (React + Tailwind only); no new runtime deps without discussion.
-- Copy buttons: pair a dashed + dashless button per row with `title` tooltips, reusing the `copyToClipboard` helper.
+- Copy buttons: one labeled `Copy` button per row plus a global `With dashes` / `Without dashes` toggle (`role="group"`, `aria-pressed`), reusing the `copyToClipboard` helper. Displayed and copied values follow the toggle; buttons expose dynamic `aria-label`s.
 - Accent color is blue (`blue-600`); favicon motif follows the same accent.

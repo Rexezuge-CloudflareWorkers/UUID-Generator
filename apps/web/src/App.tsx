@@ -1,15 +1,53 @@
 import { useState, useEffect } from 'react';
 
+function formatUuid(uuid: string, includeDashes: boolean) {
+  return includeDashes ? uuid : uuid.replace(/-/g, '');
+}
+
+function UuidRow({ label, uuid, includeDashes }: { label: string; uuid: string; includeDashes: boolean }) {
+  const [copied, setCopied] = useState(false);
+  const displayValue = formatUuid(uuid, includeDashes);
+  const copyLabel = `Copy ${label} ${includeDashes ? 'with dashes' : 'without dashes'}`;
+
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(displayValue)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((err) => {
+        console.error('Failed to copy UUID:', err);
+      });
+  };
+
+  return (
+    <div className="mb-4">
+      <span className="block mb-2 font-semibold text-gray-700">{label}:</span>
+      <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm flex items-center justify-between gap-2 whitespace-nowrap overflow-hidden">
+        <span className="flex-1 min-w-0 overflow-x-auto whitespace-nowrap">{displayValue}</span>
+        <button
+          type="button"
+          title={copied ? 'Copied!' : copyLabel}
+          aria-label={copied ? `Copied ${label}` : copyLabel}
+          onClick={copyToClipboard}
+          className="ml-3 flex shrink-0 items-center gap-1.5 rounded px-2 py-1 hover:bg-gray-200"
+        >
+          <span aria-hidden="true" className="text-xl">
+            {copied ? '✔' : '📋'}
+          </span>
+          <span className="font-sans text-sm font-medium">{copied ? 'Copied' : 'Copy'}</span>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [uuid1, setUuid1] = useState('Loading...');
   const [uuid2, setUuid2] = useState('Loading...');
   const [uuid3, setUuid3] = useState('Loading...');
-  const [copyIcon1, setCopyIcon1] = useState('📋');
-  const [copyIcon2, setCopyIcon2] = useState('📋');
-  const [copyIcon3, setCopyIcon3] = useState('📋');
-  const [copyIcon1Plain, setCopyIcon1Plain] = useState('📋');
-  const [copyIcon2Plain, setCopyIcon2Plain] = useState('📋');
-  const [copyIcon3Plain, setCopyIcon3Plain] = useState('📋');
+  const [includeDashes, setIncludeDashes] = useState(true);
 
   useEffect(() => {
     const fetchUUIDs = async () => {
@@ -30,84 +68,41 @@ function App() {
     fetchUUIDs();
   }, []);
 
-  const copyToClipboard = (text: string, setIcon: (icon: string) => void) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setIcon('✔');
-        setTimeout(() => setIcon('📋'), 2000);
-      })
-      .catch((err) => {
-        console.error('Failed to copy UUID:', err);
-      });
-  };
+  const toggleButtonClass = (active: boolean) =>
+    `px-3 py-1.5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
+      active ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'
+    }`;
 
   return (
     <div className="flex flex-col items-center p-5 min-h-screen bg-gray-50">
       <div className="w-full max-w-xl p-6 bg-white border border-gray-300 rounded-lg shadow-sm">
         <h2 className="text-2xl font-bold text-center mb-6">UUID Generator</h2>
 
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">Random UUID:</label>
-          <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm flex items-center justify-between gap-2 whitespace-nowrap overflow-hidden">
-            <span className="flex-1 min-w-0 overflow-x-auto whitespace-nowrap">{uuid1}</span>
+        <div className="mb-6 flex items-center justify-center">
+          <div role="group" aria-label="UUID format" className="inline-flex overflow-hidden rounded-md border border-gray-300">
             <button
-              title="Copy with dashes"
-              onClick={() => copyToClipboard(uuid1, setCopyIcon1)}
-              className="ml-3 shrink-0 text-2xl hover:bg-gray-200 p-1 rounded"
+              type="button"
+              aria-pressed={includeDashes}
+              onClick={() => setIncludeDashes(true)}
+              className={toggleButtonClass(includeDashes)}
             >
-              {copyIcon1}
+              With dashes
             </button>
             <button
-              title="Copy without dashes"
-              onClick={() => copyToClipboard(uuid1.replace(/-/g, ''), setCopyIcon1Plain)}
-              className="ml-1 shrink-0 text-2xl hover:bg-gray-200 p-1 rounded"
+              type="button"
+              aria-pressed={!includeDashes}
+              onClick={() => setIncludeDashes(false)}
+              className={`border-l border-gray-300 ${toggleButtonClass(!includeDashes)}`}
             >
-              {copyIcon1Plain}
-            </button>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">UUID starting with a letter:</label>
-          <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm flex items-center justify-between gap-2 whitespace-nowrap overflow-hidden">
-            <span className="flex-1 min-w-0 overflow-x-auto whitespace-nowrap">{uuid2}</span>
-            <button
-              title="Copy with dashes"
-              onClick={() => copyToClipboard(uuid2, setCopyIcon2)}
-              className="ml-3 shrink-0 text-2xl hover:bg-gray-200 p-1 rounded"
-            >
-              {copyIcon2}
-            </button>
-            <button
-              title="Copy without dashes"
-              onClick={() => copyToClipboard(uuid2.replace(/-/g, ''), setCopyIcon2Plain)}
-              className="ml-1 shrink-0 text-2xl hover:bg-gray-200 p-1 rounded"
-            >
-              {copyIcon2Plain}
+              Without dashes
             </button>
           </div>
         </div>
 
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">UUID starting with a number:</label>
-          <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm flex items-center justify-between gap-2 whitespace-nowrap overflow-hidden">
-            <span className="flex-1 min-w-0 overflow-x-auto whitespace-nowrap">{uuid3}</span>
-            <button
-              title="Copy with dashes"
-              onClick={() => copyToClipboard(uuid3, setCopyIcon3)}
-              className="ml-3 shrink-0 text-2xl hover:bg-gray-200 p-1 rounded"
-            >
-              {copyIcon3}
-            </button>
-            <button
-              title="Copy without dashes"
-              onClick={() => copyToClipboard(uuid3.replace(/-/g, ''), setCopyIcon3Plain)}
-              className="ml-1 shrink-0 text-2xl hover:bg-gray-200 p-1 rounded"
-            >
-              {copyIcon3Plain}
-            </button>
-          </div>
+        <div aria-live="polite">
+          <UuidRow label="Random UUID" uuid={uuid1} includeDashes={includeDashes} />
+          <UuidRow label="UUID starting with a letter" uuid={uuid2} includeDashes={includeDashes} />
+          <UuidRow label="UUID starting with a number" uuid={uuid3} includeDashes={includeDashes} />
         </div>
       </div>
 
