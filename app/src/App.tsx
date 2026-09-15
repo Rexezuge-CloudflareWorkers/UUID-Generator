@@ -17,18 +17,15 @@ function App() {
   useEffect(() => {
     const fetchUUIDs = async () => {
       try {
-        const requests = [fetch('/api/uuid'), fetch('/api/uuid?startWithLetter=true'), fetch('/api/uuid?startWithNumber=true')];
+        const response = await fetch('/api/uuid/batch?randomCount=1&letterCount=1&numberCount=1');
+        const data = await response.json();
 
-        const responses = await Promise.all(requests);
-        const dataPromises = responses.map((response) => response.json());
-        const data = await Promise.all(dataPromises);
-
-        setUuid1((data[0].uuids && data[0].uuids[0]) || 'Error fetching UUID');
-        setUuid2((data[1].uuids && data[1].uuids[0]) || 'Error fetching UUID');
-        setUuid3((data[2].uuids && data[2].uuids[0]) || 'Error fetching UUID');
-        setUuid1NoDash(((data[0].uuids && data[0].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
-        setUuid2NoDash(((data[1].uuids && data[1].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
-        setUuid3NoDash(((data[2].uuids && data[2].uuids[0]) || 'Error fetching UUID').replace(/-/g, ''));
+        setUuid1((data.random && data.random[0]) || 'Error fetching UUID');
+        setUuid2((data.startsWithLetter && data.startsWithLetter[0]) || 'Error fetching UUID');
+        setUuid3((data.startsWithNumber && data.startsWithNumber[0]) || 'Error fetching UUID');
+        setUuid1NoDash(((data.random && data.random[0]) || 'Error fetching UUID').replace(/-/g, ''));
+        setUuid2NoDash(((data.startsWithLetter && data.startsWithLetter[0]) || 'Error fetching UUID').replace(/-/g, ''));
+        setUuid3NoDash(((data.startsWithNumber && data.startsWithNumber[0]) || 'Error fetching UUID').replace(/-/g, ''));
       } catch (error) {
         console.error('Error fetching UUIDs:', error);
         setUuid1('Error fetching UUID');

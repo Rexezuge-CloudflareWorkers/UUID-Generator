@@ -2,7 +2,7 @@ import { fromHono } from 'chanfana';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { serveStatic } from 'hono/cloudflare-workers';
-import { GenerateUUIDRoute } from './endpoints';
+import { GenerateUUIDBatchRoute, GenerateUUIDRoute } from './endpoints';
 
 // Start a Hono app
 const app = new Hono();
@@ -16,6 +16,7 @@ const openapi = fromHono(app, {
 });
 
 // Register OpenAPI endpoints
+openapi.get('/api/uuid/batch', GenerateUUIDBatchRoute);
 openapi.get('/api/uuid', GenerateUUIDRoute);
 
 // Serve static files from app/dist
