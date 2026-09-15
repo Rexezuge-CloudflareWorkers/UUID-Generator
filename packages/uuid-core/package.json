@@ -1,0 +1,13 @@
+{
+  "name": "@uuid-generator/uuid-core",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.x",
+    "vitest": "^4.1.x"
+  }
+}
