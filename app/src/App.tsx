@@ -4,15 +4,12 @@ function App() {
   const [uuid1, setUuid1] = useState('Loading...');
   const [uuid2, setUuid2] = useState('Loading...');
   const [uuid3, setUuid3] = useState('Loading...');
-  const [uuid1NoDash, setUuid1NoDash] = useState('Loading...');
-  const [uuid2NoDash, setUuid2NoDash] = useState('Loading...');
-  const [uuid3NoDash, setUuid3NoDash] = useState('Loading...');
   const [copyIcon1, setCopyIcon1] = useState('📋');
   const [copyIcon2, setCopyIcon2] = useState('📋');
   const [copyIcon3, setCopyIcon3] = useState('📋');
-  const [copyIcon1Nd, setCopyIcon1Nd] = useState('📋');
-  const [copyIcon2Nd, setCopyIcon2Nd] = useState('📋');
-  const [copyIcon3Nd, setCopyIcon3Nd] = useState('📋');
+  const [copyIcon1Plain, setCopyIcon1Plain] = useState('📋');
+  const [copyIcon2Plain, setCopyIcon2Plain] = useState('📋');
+  const [copyIcon3Plain, setCopyIcon3Plain] = useState('📋');
 
   useEffect(() => {
     const fetchUUIDs = async () => {
@@ -23,17 +20,11 @@ function App() {
         setUuid1((data.random && data.random[0]) || 'Error fetching UUID');
         setUuid2((data.startsWithLetter && data.startsWithLetter[0]) || 'Error fetching UUID');
         setUuid3((data.startsWithNumber && data.startsWithNumber[0]) || 'Error fetching UUID');
-        setUuid1NoDash(((data.random && data.random[0]) || 'Error fetching UUID').replace(/-/g, ''));
-        setUuid2NoDash(((data.startsWithLetter && data.startsWithLetter[0]) || 'Error fetching UUID').replace(/-/g, ''));
-        setUuid3NoDash(((data.startsWithNumber && data.startsWithNumber[0]) || 'Error fetching UUID').replace(/-/g, ''));
       } catch (error) {
         console.error('Error fetching UUIDs:', error);
         setUuid1('Error fetching UUID');
         setUuid2('Error fetching UUID');
         setUuid3('Error fetching UUID');
-        setUuid1NoDash('Error fetching UUID');
-        setUuid2NoDash('Error fetching UUID');
-        setUuid3NoDash('Error fetching UUID');
       }
     };
     fetchUUIDs();
@@ -60,18 +51,19 @@ function App() {
           <label className="block mb-2 font-semibold text-gray-700">Random UUID:</label>
           <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm break-all flex items-center justify-between">
             <span className="flex-grow">{uuid1}</span>
-            <button onClick={() => copyToClipboard(uuid1, setCopyIcon1)} className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded">
+            <button
+              title="Copy with dashes"
+              onClick={() => copyToClipboard(uuid1, setCopyIcon1)}
+              className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded"
+            >
               {copyIcon1}
             </button>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">Random UUID (No Dashes):</label>
-          <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm break-all flex items-center justify-between">
-            <span className="flex-grow">{uuid1NoDash}</span>
-            <button onClick={() => copyToClipboard(uuid1NoDash, setCopyIcon1Nd)} className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded">
-              {copyIcon1Nd}
+            <button
+              title="Copy without dashes"
+              onClick={() => copyToClipboard(uuid1.replace(/-/g, ''), setCopyIcon1Plain)}
+              className="ml-1 text-2xl hover:bg-gray-200 p-1 rounded"
+            >
+              {copyIcon1Plain}
             </button>
           </div>
         </div>
@@ -80,18 +72,19 @@ function App() {
           <label className="block mb-2 font-semibold text-gray-700">UUID starting with a letter:</label>
           <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm break-all flex items-center justify-between">
             <span className="flex-grow">{uuid2}</span>
-            <button onClick={() => copyToClipboard(uuid2, setCopyIcon2)} className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded">
+            <button
+              title="Copy with dashes"
+              onClick={() => copyToClipboard(uuid2, setCopyIcon2)}
+              className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded"
+            >
               {copyIcon2}
             </button>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">UUID starting with a letter (No Dashes):</label>
-          <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm break-all flex items-center justify-between">
-            <span className="flex-grow">{uuid2NoDash}</span>
-            <button onClick={() => copyToClipboard(uuid2NoDash, setCopyIcon2Nd)} className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded">
-              {copyIcon2Nd}
+            <button
+              title="Copy without dashes"
+              onClick={() => copyToClipboard(uuid2.replace(/-/g, ''), setCopyIcon2Plain)}
+              className="ml-1 text-2xl hover:bg-gray-200 p-1 rounded"
+            >
+              {copyIcon2Plain}
             </button>
           </div>
         </div>
@@ -100,18 +93,19 @@ function App() {
           <label className="block mb-2 font-semibold text-gray-700">UUID starting with a number:</label>
           <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm break-all flex items-center justify-between">
             <span className="flex-grow">{uuid3}</span>
-            <button onClick={() => copyToClipboard(uuid3, setCopyIcon3)} className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded">
+            <button
+              title="Copy with dashes"
+              onClick={() => copyToClipboard(uuid3, setCopyIcon3)}
+              className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded"
+            >
               {copyIcon3}
             </button>
-          </div>
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-2 font-semibold text-gray-700">UUID starting with a number (No Dashes):</label>
-          <div className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 font-mono text-sm break-all flex items-center justify-between">
-            <span className="flex-grow">{uuid3NoDash}</span>
-            <button onClick={() => copyToClipboard(uuid3NoDash, setCopyIcon3Nd)} className="ml-3 text-2xl hover:bg-gray-200 p-1 rounded">
-              {copyIcon3Nd}
+            <button
+              title="Copy without dashes"
+              onClick={() => copyToClipboard(uuid3.replace(/-/g, ''), setCopyIcon3Plain)}
+              className="ml-1 text-2xl hover:bg-gray-200 p-1 rounded"
+            >
+              {copyIcon3Plain}
             </button>
           </div>
         </div>
