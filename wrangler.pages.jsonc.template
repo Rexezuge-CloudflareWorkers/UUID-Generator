@@ -2,7 +2,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
   "name": "uuid-generator-app",
 	"compatibility_date": "2025-12-20",
-	"pages_build_output_dir": "./app/dist/",
+	"pages_build_output_dir": "./apps/web/dist/",
 	"services": [
 		{
 			"binding": "API_WORKER",

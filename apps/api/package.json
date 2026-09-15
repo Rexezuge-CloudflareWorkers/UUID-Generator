@@ -1,0 +1,19 @@
+{
+  "name": "@uuid-generator/api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@uuid-generator/uuid-core": "workspace:*",
+    "chanfana": "^3.4.x",
+    "hono": "^4.13.x",
+    "zod": "^4.4.x"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.x",
+    "vitest": "^4.1.x"
+  }
+}

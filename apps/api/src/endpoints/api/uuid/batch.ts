@@ -1,6 +1,6 @@
 import { OpenAPIRoute } from 'chanfana';
 import { z } from 'zod';
-import { generateUUIDs } from '../../../lib/uuid';
+import { generateUUIDs } from '@uuid-generator/uuid-core';
 
 export const MAX_BATCH_TOTAL = 200;
 

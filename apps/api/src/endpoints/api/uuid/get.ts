@@ -1,6 +1,6 @@
 import { OpenAPIRoute } from 'chanfana';
 import { z } from 'zod';
-import { getRandomUUID } from '../../../lib/uuid';
+import { getRandomUUID } from '@uuid-generator/uuid-core';
 
 export class GenerateUUIDRoute extends OpenAPIRoute {
   schema = {

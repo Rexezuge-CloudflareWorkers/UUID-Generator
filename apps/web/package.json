@@ -1,5 +1,5 @@
 {
-  "name": "uuid-generator-app",
+  "name": "@uuid-generator/web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "clean": "rm -rf dist/",
     "prebuild": "npm run prettier && npm run lint",
     "build": "tsc -b && vite build",
-    "prerelease": "pnpm run clean && pnpm install",
+    "prerelease": "pnpm run clean",
     "release": "pnpm run build",
     "prettier": "prettier --write .",
     "lint": "eslint --ext .ts,.tsx --fix .",
