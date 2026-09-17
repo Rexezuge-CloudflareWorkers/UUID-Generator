@@ -29,7 +29,7 @@
     "globals": "^17.11.x",
     "prettier": "^3.9.6",
     "typescript": "^6.0.x",
-    "typescript-eslint": "^8.67.x",
+    "typescript-eslint": "^8.70.x",
     "vite": "^8.3.x"
   },
   "dependencies": {
