@@ -10,7 +10,7 @@
     "@uuid-generator/uuid-core": "workspace:*",
     "chanfana": "^3.4.x",
     "hono": "^4.13.x",
-    "zod": "^4.4.x"
+    "zod": "^4.6.x"
   },
   "devDependencies": {
     "typescript": "^6.0.x",
