@@ -21,7 +21,7 @@
     "format": "prettier --check ."
   },
   "devDependencies": {
-    "prettier": "^3.9.x",
+    "prettier": "^3.10.x",
     "tsx": "^4.23.x",
     "typescript": "^6.0.x",
     "vitest": "^5.1.x",
